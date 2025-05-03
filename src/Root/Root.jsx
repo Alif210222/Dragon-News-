@@ -15,8 +15,10 @@ const Root = () => {
            <Helmet>
              <title>Home</title>
          </Helmet>
+        
 
            <header><Header></Header> </header>
+          
                   <Navbar></Navbar>
 
 

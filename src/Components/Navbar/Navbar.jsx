@@ -60,7 +60,8 @@ const Navbar = () => {
     <img className='w-10 h-10 rounded-full border-2 p-1' src={user? user.photoURL : userimg } alt="" />
 
     {
-      user ? (<button onClick={handleLogout} className='px-6 py-2 border rounded bg-primary text-white cursor-pointer hover:bg-gray-400 duration-700 '>Logout </button> )  : (<Link to='/auth/login' className="px-6 py-2 border rounded bg-primary text-white">Login</Link>)
+      user ? (<button onClick={handleLogout} className='px-6 py-2 border rounded bg-primary text-white cursor-pointer hover:bg-gray-400 duration-700 '>Logout </button> ) 
+       : (<Link to='/auth/login' className="px-6 py-2 border rounded bg-primary text-white">Login</Link>)
     }
    
   </div>

@@ -1,6 +1,8 @@
 import React, { use, useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { AuthContext } from '../../AuthProvider/AuthContext';
+import { sendEmailVerification } from 'firebase/auth';
+import { auth } from '../../Firebase/firebase.config';
 
 
 
@@ -31,16 +33,26 @@ const Register = () => {
           createUser(email,password)
           .then(result =>{        
             const  user = result.user 
+               console.log(user)
+                // email verify   success full code ...yeahhh!!
+                    sendEmailVerification(user)
+                    .then(()=>{
+                    console.log("we send a verification email.")
+                        alert("we send you a email,please verify your email .")
+                        
+                    })
+
               // data update
+             
                 updateUser({displayName : name , photoURL : photo }) 
                 .then (()=>{
                   setUser({...user , displayName : name , photoURL : photo})
-
+                     
                   navigate("/")
                 })
                 .catch(error =>{
                   // console.log(error)
-                  setUser(use) // jdi update datay kno error ase tahole ager user ke abr set kore dibo
+                  setUser(user) // jdi update datay kno error ase tahole ager user ke abr set kore dibo
                 })        
                
            

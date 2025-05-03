@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {  createUserWithEmailAndPassword ,onAuthStateChanged,signInWithEmailAndPassword, signOut,updateProfile } from "firebase/auth";
+import {  createUserWithEmailAndPassword ,onAuthStateChanged,sendEmailVerification,signInWithEmailAndPassword, signOut,updateProfile } from "firebase/auth";
 import { auth } from '../Firebase/firebase.config';
 import { AuthContext } from './AuthContext';
  
@@ -13,24 +13,34 @@ const AuthProvider = ({children}) => {
 // console.log(user)
 
     const createUser = (email,password) =>{
-        setLoading(true)
+         setLoading(true)
          return createUserWithEmailAndPassword(auth,email,password) 
         
       }
 
     const loginUser = (email,password) =>{
-        setLoading(true)
+         setLoading(true)
          return signInWithEmailAndPassword (auth,email,password)
     }  
 
     const logoutUser = () =>{
-        setLoading(true)
+         setLoading(true)
          return signOut(auth)
     }
 
     const updateUser = (updateData)=>{
         return updateProfile(auth.currentUser,updateData )
     }
+
+
+    const verificationEmail =()=>{
+       return   sendEmailVerification(auth.currentUser)     
+        // .then(() => {
+        //    // Email verification sent!
+        //    // ...
+        //  });
+           }
+
 
 
     useEffect(()=>{
@@ -41,7 +51,6 @@ const AuthProvider = ({children}) => {
         return()=>{
             unSubscriber();
         }
-
        
     } , [])
 
@@ -52,10 +61,12 @@ const AuthProvider = ({children}) => {
         createUser,
         loginUser,
         logoutUser,
-        updateUser
+        updateUser,
+        verificationEmail
 
     }
        
+
 
     return (
        <AuthContext value={userInfo}> 

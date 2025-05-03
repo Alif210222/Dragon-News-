@@ -27,11 +27,11 @@ const NewsDetails = () => {
         </header>
 
         <main className='w-11/12 mx-auto grid grid-cols-12 mt-6'>
-           <section className='col-span-9'>
+           <section className='col-span-9 sticky h-fit top-0'>
               <h2 className='font-bold mb-5 text-2xl'>Dragon News</h2>
               <NewsDeyailsCart news={news}></NewsDeyailsCart>
            </section>
-           <aside className='col-span-3 sticky h-fit top-0'>
+           <aside className='col-span-3 '>     
                <RightASide></RightASide>
            </aside>
         </main>
